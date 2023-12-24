@@ -2,7 +2,7 @@
 require_once('../controller/usercontroller.php');
 
 $user = new usercontroller();
-$user->Register();
+$err =$user->Register();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,9 +26,9 @@ $user->Register();
                 <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
                     <div class="max-w-md mx-auto">
                         <form action="" method="post">
-                            <?php if (!empty($error)) : ?>
+                            <?php if (!empty($err)) : ?>
                                 <div class="text-xl font-semibold text-red-400">
-                                    <?php echo $error; ?>
+                                    <?php echo $err; ?>
                                 </div>
                             <?php endif; ?>
                             <div>
