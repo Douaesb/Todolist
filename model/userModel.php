@@ -82,7 +82,7 @@
                 return "L'email existe déjà.";
             }
 
-            $passwordHash = password_hash($this->pass, PASSWORD_DEFAULT);
+            $this->pass = password_hash($this->pass, PASSWORD_DEFAULT);
 
             $query = "INSERT INTO `user` (nom, prenom, email, pass, tel,role)
                     VALUES (:username, :surname, :email, :password, :tel,'membre')";
@@ -91,28 +91,28 @@
             $stmt->bindParam(":username", $this->nom);
             $stmt->bindParam(":surname", $this->prenom);
             $stmt->bindParam(":email", $this->email);
-            $stmt->bindParam(":password", $passwordHash);
+            $stmt->bindParam(":password", $this->pass);
             $stmt->bindParam(":tel", $this->tel);
             
             $stmt->execute();
         }
 
-        // public function login() {
-        //     $query = "SELECT id, pass FROM utilisateur WHERE email=:email";
-        //     $stmt = $this->conn->prepare($query);
-        //     $stmt->bindParam(":email", $this->email);
-        //     $stmt->execute();
-        //     $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        public function login() {
+            $query = "SELECT iduser, pass FROM user WHERE email=:email";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(":email", $this->email);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        //     if ($result && password_verify($this->pass, $result['pass'])) {
-        //         session_start();
-        //         $_SESSION['id'] = $result['id'];
-        //         header("Location: dashboard.php");
-        //     exit();
-        //     } else {
-        //         return "L'email ou le mot de passe est incorrect.";
-        //     }
-        // }
+            if ($result && password_verify($this->pass, $result['pass'])) {
+                session_start();
+                $_SESSION['iduser'] = $result['iduser'];
+                header("Location: dashboard.php");
+            exit();
+            } else {
+                return "L'email ou le mot de passe est incorrect.";
+            }
+        }
 
         public function logout() {
             session_destroy();

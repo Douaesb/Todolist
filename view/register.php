@@ -27,7 +27,7 @@ $err =$user->Register();
                     <div class="max-w-md mx-auto">
                         <form action="" method="post">
                             <?php if (!empty($err)) : ?>
-                                <div class="text-xl font-semibold text-red-400">
+                                <div class="text-xl font-semibold text-red-500">
                                     <?php echo $err; ?>
                                 </div>
                             <?php endif; ?>

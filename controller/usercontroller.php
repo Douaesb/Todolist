@@ -1,14 +1,16 @@
 <?php
 require_once('../model/userModel.php');
 
-class usercontroller{
+class usercontroller
+{
 
-    public function Register(){
+    public function Register()
+    {
         $error = ""; // Initialize an empty error message
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             $user = new UserModel();
-            $role ='membre';
+            $role = 'membre';
             $user->setnom($_POST['nom']);
             $user->setprenom($_POST['prenom']);
             $user->setemail($_POST['email']);
@@ -21,38 +23,49 @@ class usercontroller{
                 header('Location: ../view/login.php');
                 exit();
             }
-            
+
             return $error; // Return the error message
 
         }
+    }
+    public function login()
+    {
+        if (isset($_POST['submit']) && isset($_POST['pass']) && isset($_POST['email'])) {
+            $user = new UserModel();
+            $user->setemail($_POST['email']);
+            $user->setpass($_POST['pass']);
+            $user->login();
+        } else {
+            // Handle the case when 'submit', 'pass', or 'email' is not set
+            echo "Invalid form submission.";
+        }
+    }
+    
 
+    public function AddProjects()
+    {
     }
 
-    public function AddProjects(){
-        
+    public function EditProjects()
+    {
     }
 
-    public function EditProjects(){
-        
+    public function DeleteProjects()
+    {
+    }
+    public function AddTasks()
+    {
     }
 
-    public function DeleteProjects(){
-        
-    }
-    public function AddTasks(){
-        
+    public function EditTasks()
+    {
     }
 
-    public function EditTasks(){
-        
+    public function DeleteTasks()
+    {
     }
 
-    public function DeleteTasks(){
-        
-    }
-
-    public function SearchTasks(){
-        
+    public function SearchTasks()
+    {
     }
 }
-?>
