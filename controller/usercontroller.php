@@ -16,8 +16,6 @@ class usercontroller{
             $user->settel($_POST['tel']);
             $user->setrole($role);
             $error = $user->register(); // Capture the error message
-            var_dump($error); // Add this line for debugging
-
 
             if (empty($error)) {
                 header('Location: ../view/login.php');
