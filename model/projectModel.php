@@ -37,13 +37,25 @@ class ProjectModel{
         $this->descpro = $descpro;
     }
 
-    public function displayProjects()
+    public function displayProject($iduser)
     {
-        $sql = "SELECT * FROM projet inner join user where iduser = :idu";
+        $sql = "SELECT * FROM projet where iduser = :idu";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':idu', $iduser);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $projectsData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $projects = [];
+        foreach ($projectsData as $projectData) {
+            $project = new ProjectModel();
+            // $user = new UserModel();
+            $project->setIdpro($projectData['idpro']);
+            $project->setNompro($projectData['nompro']);
+            $project->setDescpro($projectData['descpro']);
+            // $user->setnom($projectData['nom']);
+            $projects[] = $project;
+        }
+
+        return $projects;
     }
 
     public function addProject($iduser)
@@ -61,8 +73,12 @@ class ProjectModel{
         
     }
 
-    public function DeleteProjects(){
-        
+    public function deleteProject($idpro)
+    {
+        $sql = "DELETE FROM projet WHERE idpro = :idpro";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idpro', $idpro);
+        return $stmt->execute();
     }
 
 
