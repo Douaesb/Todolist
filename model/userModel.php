@@ -113,7 +113,7 @@
 
         public function login()
         {
-            $query = "SELECT iduser, pass FROM user WHERE email=:email";
+            $query = "SELECT iduser,nom, pass FROM user WHERE email=:email";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":email", $this->email);
             $stmt->execute();
@@ -122,6 +122,7 @@
             if ($result && password_verify($this->pass, $result['pass'])) {
                 session_start();
                 $_SESSION['iduser'] = $result['iduser'];
+                $_SESSION['nom'] = $result['nom'];
                 return true;
             } else {
                 return false;

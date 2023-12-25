@@ -48,7 +48,7 @@ $user->logout();
         
     <div class="flex justify-between">
     
-    <aside class="bg-white shadow-md max-h-screen w-80">
+    <aside class="bg-white shadow-md w-80">
             <div class="flex flex-col justify-between h-full">
                 <div class="flex-grow">
                     <div class="px-4 py-6 text-center border-b">

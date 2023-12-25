@@ -1,6 +1,5 @@
 <?php
-require_once('./classes/database.php');
-require_once('./classes/task.php');
+require_once('database.php');
 
 class TaskModel{
     private $conn;
