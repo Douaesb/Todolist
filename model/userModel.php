@@ -122,10 +122,9 @@
             if ($result && password_verify($this->pass, $result['pass'])) {
                 session_start();
                 $_SESSION['iduser'] = $result['iduser'];
-                header("Location: ../view/dashboard.php");
-                exit();
+                return true;
             } else {
-                return "L'email ou le mot de passe est incorrect.";
+                return false;
             }
         }
 
