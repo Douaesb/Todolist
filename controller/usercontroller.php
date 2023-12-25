@@ -34,7 +34,13 @@ class usercontroller
             $user = new UserModel();
             $user->setemail($_POST['email']);
             $user->setpass($_POST['pass']);
-            $user->login();
+            if($user->login()){
+                header("Location: ../view/dashboard.php");
+                exit();
+            }else{
+                return "Email or password incorrect";
+            }
+            
         }
     }
     
