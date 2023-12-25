@@ -35,12 +35,25 @@ class usercontroller
             $user->setemail($_POST['email']);
             $user->setpass($_POST['pass']);
             $user->login();
-        } else {
-            // Handle the case when 'submit', 'pass', or 'email' is not set
-            echo "Invalid form submission.";
         }
     }
     
+    public function logout(){
+        if (isset($_GET['deconn'])) {
+            $user = new UserModel();
+            return $user->logout();
+        }
+    }
+
+    public function isLoggedIn()
+    {
+        session_start();
+
+        if (!isset($_SESSION['iduser'])) {
+            header("Location: login.php");
+            exit();
+        }
+    }
 
     public function AddProjects()
     {

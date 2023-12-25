@@ -1,7 +1,8 @@
     <?php
     require_once('database.php');
 
-    class UserModel{
+    class UserModel
+    {
         private $id;
         private $nom;
         private $prenom;
@@ -11,70 +12,83 @@
         private $role;
         private $conn;
 
-        public function __construct() {
-        
+        public function __construct()
+        {
+
             $this->conn = Database::getDb()->getConn();
-
         }
-        
 
-        public function getId(){ 
+
+        public function getId()
+        {
             return $this->id;
         }
 
-        public function setId($id){
+        public function setId($id)
+        {
             $this->id = $id;
-
         }
-        public function getnom(){
+        public function getnom()
+        {
             return $this->nom;
         }
 
-        public function setnom($nom){
+        public function setnom($nom)
+        {
             $this->nom = $nom;
         }
-        public function getprenom(){
+        public function getprenom()
+        {
             return $this->prenom;
         }
 
-        public function setprenom($prenom){
+        public function setprenom($prenom)
+        {
             $this->prenom = $prenom;
         }
 
-        public function getemail(){
+        public function getemail()
+        {
             return $this->email;
         }
 
-        public function setemail($email){
+        public function setemail($email)
+        {
             $this->email = $email;
-
         }
-        public function getpass(){
+        public function getpass()
+        {
             return $this->pass;
         }
 
-        public function setpass($pass){
+        public function setpass($pass)
+        {
             $this->pass = $pass;
         }
-        public function gettel(){
+        public function gettel()
+        {
             return $this->tel;
         }
 
-        public function settel($tel){
+        public function settel($tel)
+        {
             $this->tel = $tel;
         }
-        public function getrole(){
+        public function getrole()
+        {
             return $this->role;
         }
 
-        public function setrole($role){
+        public function setrole($role)
+        {
             $this->role = $role;
         }
 
-        public function register() {
+        public function register()
+        {
             $emailCheckQuery = "SELECT COUNT(*) FROM user WHERE email=:email";
             $emailCheckStmt = $this->conn->prepare($emailCheckQuery);
-            $emailCheckStmt->bindParam(":email",$this->email);
+            $emailCheckStmt->bindParam(":email", $this->email);
             $emailCheckStmt->execute();
             $emailCount = $emailCheckStmt->fetchColumn();
 
@@ -93,11 +107,12 @@
             $stmt->bindParam(":email", $this->email);
             $stmt->bindParam(":password", $this->pass);
             $stmt->bindParam(":tel", $this->tel);
-            
+
             $stmt->execute();
         }
 
-        public function login() {
+        public function login()
+        {
             $query = "SELECT iduser, pass FROM user WHERE email=:email";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(":email", $this->email);
@@ -107,45 +122,47 @@
             if ($result && password_verify($this->pass, $result['pass'])) {
                 session_start();
                 $_SESSION['iduser'] = $result['iduser'];
-                header("Location: dashboard.php");
-            exit();
+                header("Location: ../view/dashboard.php");
+                exit();
             } else {
                 return "L'email ou le mot de passe est incorrect.";
             }
         }
 
-        public function logout() {
+        public function logout()
+        {
             session_destroy();
-            header("Location: login.php");
+            header("Location: ../view/login.php");
             exit();
         }
 
 
-        public function AddProjects(){
-            
+
+
+        public function AddProjects()
+        {
         }
 
-        public function EditProjects(){
-            
+        public function EditProjects()
+        {
         }
 
-        public function DeleteProjects(){
-            
+        public function DeleteProjects()
+        {
         }
-        public function AddTasks(){
-            
-        }
-
-        public function EditTasks(){
-            
+        public function AddTasks()
+        {
         }
 
-        public function DeleteTasks(){
-            
+        public function EditTasks()
+        {
         }
 
-        public function SearchTasks(){
-            
+        public function DeleteTasks()
+        {
         }
 
+        public function SearchTasks()
+        {
+        }
     }
