@@ -3,6 +3,12 @@ require_once('../model/projectModel.php');
 
 class procontroller{
 
+public function DisplayProjects(){
+    $iduser = $_SESSION['iduser'];
+    $projet = new ProjectModel();
+    return $projet->displayProject($iduser);
+}
+
 public function AddProjects(){
         
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addpro'])) {
@@ -19,9 +25,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addpro'])) {
     public function EditProjects(){
         
     }
-
-    public function DeleteProjects(){
-        
+    
+    public function deleteProject()
+    {
+        if (isset($_GET['idpro'])) {
+            $idpro = $_GET['idpro'];
+            $projet =new ProjectModel();
+            $projet->deleteProject($idpro);
+            header('Location: projects.php');
+            exit();
+        }
     }
 
 }
