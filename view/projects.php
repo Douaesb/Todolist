@@ -8,7 +8,7 @@
     <title>DataWare</title>
 </head>
 <body class="bg-yellow-50">
-    <header class="bg-yellow-50 py-3 px-4">
+<header class="fixed right-0 top-0 left-80 bg-yellow-50 py-3 px-4 h-16">
         <div class="max-w-4xl mx-auto flex items-center justify-between">
             <div>
                     <button type="button" class="flex items-center focus:outline-none rounded-lg text-gray-600 hover:text-yellow-600 focus:text-yellow-600 font-semibold p-2 border border-transparent hover:border-yellow-300 focus:border-yellow-300 transition">
