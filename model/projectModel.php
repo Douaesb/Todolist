@@ -1,11 +1,17 @@
 <?php
-require_once('./classes/database.php');
-require_once('./classes/project.php');
+require_once('database.php');
 
 class ProjectModel{
     private $idpro;
     private $nompro;
     private $descpro;
+    private $conn;
+    
+    public function __construct() {
+       
+        $this->conn = Database::getDb()->getConn();
+
+    }
 
 
     public function getIdpro(){
@@ -31,22 +37,25 @@ class ProjectModel{
         $this->descpro = $descpro;
     }
 
-    private $conn;
-
-    public function __construct() {
-       
-        $this->conn = Database::getDb()->getConn();
-
+    public function displayProjects()
+    {
+        $sql = "SELECT * FROM projet inner join user where iduser = :idu";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idu', $iduser);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function DisplayProjects(){
-        
+    public function addProject($iduser)
+    {
+        $sql = "INSERT INTO projet (nompro, descpro,iduser) VALUES (:nom_pro, :descrp_pro, :idu)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':nom_pro', $this->nompro);
+        $stmt->bindParam(':descrp_pro', $this->descpro);
+        $stmt->bindParam(':idu', $iduser);
+        return $stmt->execute();
     }
 
-
-    public function AddProjects(){
-        
-    }
 
     public function EditProjects(){
         

@@ -2,6 +2,7 @@
 require_once('../controller/usercontroller.php');
 
 $user = new usercontroller();
+$user->login();
 $user->isLoggedIn();
 $user->logout();
 ?>
@@ -127,7 +128,7 @@ $user->logout();
               <div class="grid grid-cols-2 gap-4">
                 <div class="col-span-2">
                   <div class="p-4 bg-green-100 rounded-xl">
-                    <div class="font-bold text-xl text-gray-800 leading-none">Good day, <br>Kristin</div>
+                  <div class="font-bold text-xl text-gray-800 leading-none">Good day, <br><?php echo $_SESSION['nom'] ?></div>
                     <div class="mt-5">
                       <button type="button" class="inline-flex items-center justify-center py-2 px-3 rounded-xl bg-white text-gray-800 hover:text-green-500 text-sm font-semibold transition">
                         Start tracking
