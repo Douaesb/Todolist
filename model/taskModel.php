@@ -11,6 +11,11 @@ class TaskModel{
     private $etat;
     private $statut;
 
+    public function __construct()
+    {
+
+        $this->conn = Database::getDb()->getConn();
+    }
 
     public function getIdta(){
         return $this->idta;
@@ -65,14 +70,26 @@ class TaskModel{
         $this->statut = $statut;
     }
 
-    public function __construct() {
-       
-        $this->conn = Database::getDb()->getConn();
 
-    }
-
-    public function DisplayTasks(){
-        
+    public function DisplayTask($iduser,$idpro){
+        $sql = "SELECT * FROM tache where iduser = :idu AND idpro = :idpro";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idu', $iduser);
+        $stmt->bindParam(':idpro', $idpro);
+        $stmt->execute();
+        $tasksData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $tasks = [];
+        foreach ($tasksData as $ta) {
+            $task = new taskModel();
+            $task->setIdta($ta['idta']);
+            $task->setNomta($ta['nomta']);
+            $task->setDescta($ta['descta']);
+            $task->setDatedeb($ta['datedeb']);
+            $task->setDatefin($ta['datefin']);
+            $task->setStatut($ta['statut']);
+            $tasks[] = $task;
+        }
+        return $tasks;
     }
 
     public function AddTasks(){
