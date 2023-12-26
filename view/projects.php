@@ -165,7 +165,6 @@ $user->logout();
                     <?php foreach ($projects as $project) : ?>
                         <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                             <article class="overflow-hidden rounded-lg shadow-lg h-full">
-                                <form action="dashboard.php" method="">
                                     <div class="flex flex-col justify-between py-4 px-6 h-48">
                                         <h1 class="text-xl font-semibold mb-2">
                                             <?php echo $project->getNompro(); ?>
@@ -203,7 +202,6 @@ $user->logout();
                                             
                                         </div>
                                     </div>
-                                </form>
                             </article>
                         </div>
                     <?php endforeach; ?>
