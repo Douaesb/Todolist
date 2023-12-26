@@ -136,33 +136,4 @@
             exit();
         }
 
-
-
-
-        public function AddProjects()
-        {
-        }
-
-        public function EditProjects()
-        {
-        }
-
-        public function DeleteProjects()
-        {
-        }
-        public function AddTasks()
-        {
-        }
-
-        public function EditTasks()
-        {
-        }
-
-        public function DeleteTasks()
-        {
-        }
-
-        public function SearchTasks()
-        {
-        }
     }
