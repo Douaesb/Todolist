@@ -69,8 +69,14 @@ class ProjectModel{
     }
 
 
-    public function EditProjects(){
-        
+    public function editProject($idpro)
+    {
+        $sql = "UPDATE projet SET nompro = :nompro, descpro = :descpro WHERE idpro = :idpro";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idpro', $idpro);
+        $stmt->bindParam(':nompro', $this->nompro);
+        $stmt->bindParam(':descpro', $this->descpro);
+        return $stmt->execute();
     }
 
     public function deleteProject($idpro)
