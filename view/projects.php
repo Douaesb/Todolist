@@ -119,7 +119,7 @@ $user->logout();
 
                         <!-- Article -->
                         <article class="overflow-hidden rounded-lg shadow-lg">
-                            <div class="group bg-yellow-50 mt- py-16 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md ">
+                            <div class="group bg-yellow-50   mt- py-16 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md ">
                                 <a data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="bg-gray-200 text-yellow-700 group-hover:text-gray-800 group-hover:smooth-hover flex w-20 h-20 rounded-full items-center justify-center" href="#">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -136,7 +136,13 @@ $user->logout();
 
                     <?php foreach ($projects as $project) : ?>
                         <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-                            <article class="overflow-hidden rounded-lg shadow-lg h-full">
+                            <article class="overflow-hidden rounded-lg shadow-lg h-full bg-green-100
+                        <?php
+                        $bgColors = ['bg-purple-100', 'bg-pink-100', 'bg-green-100','bg-yellow-100','bg-white-100'];
+                        $randomIndex = array_rand($bgColors);
+                        echo $bgColors[$randomIndex];
+                        ?>
+                                ">
                                 <div class="flex flex-col justify-between py-4 px-6 h-48">
                                     <h1 class="text-xl font-semibold mb-2">
                                         <?php echo $project->getNompro(); ?>
