@@ -120,9 +120,6 @@ class TaskModel
         return $stmt->execute();
     }
 
-    public function EditTasks()
-    {
-    }
 
     public function DeleteTask($idta)
     {
@@ -132,19 +129,33 @@ class TaskModel
         return $stmt->execute();
     }
 
-    public function getTaskCount($iduser, $idpro, $status){
+    public function getTaskCount($iduser, $idpro, $status)
+    {
         $sql = "SELECT count(idta) FROM tache WHERE statut = :status AND iduser = :iduser AND idpro = :idpro";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':status', $status);
         $stmt->bindParam(':iduser', $iduser);
         $stmt->bindParam(':idpro', $idpro);
-        
+
         if ($stmt->execute()) {
-            return $stmt->fetchColumn(); 
+            return $stmt->fetchColumn();
         } else {
             return false;
         }
     }
+    public function EditTasks($idta)
+    {
+        $sql = "UPDATE tache SET nomta = :nomta, descta = :descta, datedeb = :datedeb, datefin = :datefin, statut = :statut WHERE idta = :idta";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':nomta', $this->nomta);
+        $stmt->bindParam(':descta', $this->descta);
+        $stmt->bindParam(':datedeb', $this->datedeb);
+        $stmt->bindParam(':datefin', $this->datefin);
+        $stmt->bindParam(':statut', $this->statut);
+        $stmt->bindParam(':idta', $idta);
+        return $stmt->execute();
+    }
+
 
 
     public function SearchTasks()

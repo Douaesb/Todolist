@@ -9,6 +9,7 @@ $task = new taskcontroller();
 $tasks = $task->DisplayTasks();
 $task->AddTasks();
 $res = $task->getTaskCount();
+$task->EditTasks();
 $task->DeleteTasks();
 ?>
 <!DOCTYPE html>
@@ -141,7 +142,7 @@ $task->DeleteTasks();
                                         <div class="col-span-2">
                                             <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Choose a state of the task</label>
                                             <select id="" name="statut" class="block w-full px-4 py-2 border rounded-md bg-gray-100 focus:outline-none focus:bg-white focus:border-indigo-500 dark:bg-gray-800 dark:border-gray-700 dark:focus:bg-gray-700 dark:focus:border-indigo-500">
-                                                <option value="default" selected>To Do</option>
+                                                <option value="to do" selected>To Do</option>
                                                 <option value="doing">Doing</option>
                                                 <option value="done">Done</option>
                                             </select>
@@ -204,12 +205,12 @@ $task->DeleteTasks();
                     <div class="flex flex-col flex-shrink-0 w-72">
                         <div class="flex items-center flex-shrink-0 h-10 px-2">
                             <span class="block text-sm font-semibold">to do</span>
-                            <span class="flex items-center justify-center w-5 h-5 ml-2 text-sm font-semibold text-indigo-500 bg-white rounded bg-opacity-30"><?php echo $res['todoCount']?></span>
-                            <button class="flex items-center justify-center w-6 h-6 ml-auto text-indigo-500 rounded hover:bg-indigo-500 hover:text-indigo-100">
+                            <span class="flex items-center justify-center w-5 h-5 ml-2 text-sm font-semibold text-indigo-500 bg-white rounded bg-opacity-30"><?php echo $res['todoCount'] ?></span>
+                            <!-- <button class="flex items-center justify-center w-6 h-6 ml-auto text-indigo-500 rounded hover:bg-indigo-500 hover:text-indigo-100">
                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                 </svg>
-                            </button>
+                            </button> -->
                         </div>
                         <div class="flex flex-col pb-2 overflow-auto">
                             <?php foreach ($tasks as $t) :
@@ -243,7 +244,7 @@ $task->DeleteTasks();
 
 
                                             <div class="flex items-center gap-6">
-                                                <a href="#" title="Edit" class="editProjectButton" data-project-id="" data-project-name="" data-project-description="" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal">
+                                            <a href="#" title="Edit" class="editTaskButton" data-task-Id="<?php echo $t->getIdta(); ?>" data-task-Nom="<?php echo $t->getNomta(); ?>" data-task-Desc="<?php echo $t->getDescta(); ?>" data-task-Datedeb="<?php echo $t->getDatedeb(); ?>" data-task-Datefin="<?php echo $t->getDatefin(); ?>" data-task-Statut="<?php echo $t->getStatut(); ?>" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal">
                                                     <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                                                         <path opacity="1" fill="#2766d3" d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z" />
                                                     </svg>
@@ -265,12 +266,12 @@ $task->DeleteTasks();
                     <div class="flex flex-col flex-shrink-0 w-72">
                         <div class="flex items-center flex-shrink-0 h-10 px-2">
                             <span class="block text-sm font-semibold">Doing</span>
-                            <span class="flex items-center justify-center w-5 h-5 ml-2 text-sm font-semibold text-indigo-500 bg-white rounded bg-opacity-30"><?php echo $res['doingCount']?></span>
-                            <button class="flex items-center justify-center w-6 h-6 ml-auto text-indigo-500 rounded hover:bg-indigo-500 hover:text-indigo-100">
+                            <span class="flex items-center justify-center w-5 h-5 ml-2 text-sm font-semibold text-indigo-500 bg-white rounded bg-opacity-30"><?php echo $res['doingCount'] ?></span>
+                            <!-- <button class="flex items-center justify-center w-6 h-6 ml-auto text-indigo-500 rounded hover:bg-indigo-500 hover:text-indigo-100">
                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                 </svg>
-                            </button>
+                            </button> -->
                         </div>
                         <div class="flex flex-col pb-2 overflow-auto">
                             <?php foreach ($tasks as $t) :
@@ -302,7 +303,7 @@ $task->DeleteTasks();
                                                 <span class="ml-1 leading-none"></span>
                                             </div>
                                             <div class="flex items-center gap-6">
-                                                <a href="#" title="Edit" class="editProjectButton" data-project-id="" data-project-name="" data-project-description="" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal">
+                                            <a href="#" title="Edit" class="editTaskButton" data-task-Id="<?php echo $t->getIdta(); ?>" data-task-Nom="<?php echo $t->getNomta(); ?>" data-task-Desc="<?php echo $t->getDescta(); ?>" data-task-Datedeb="<?php echo $t->getDatedeb(); ?>" data-task-Datefin="<?php echo $t->getDatefin(); ?>" data-task-Statut="<?php echo $t->getStatut(); ?>" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal">
                                                     <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                                                         <path opacity="1" fill="#2766d3" d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z" />
                                                     </svg>
@@ -325,12 +326,12 @@ $task->DeleteTasks();
                     <div class="flex flex-col flex-shrink-0 w-72">
                         <div class="flex items-center flex-shrink-0 h-10 px-2">
                             <span class="block text-sm font-semibold">Done</span>
-                            <span class="flex items-center justify-center w-5 h-5 ml-2 text-sm font-semibold text-indigo-500 bg-white rounded bg-opacity-30"><?php echo $res['doneCount']?></span>
-                            <button class="flex items-center justify-center w-6 h-6 ml-auto text-indigo-500 rounded hover:bg-indigo-500 hover:text-indigo-100">
+                            <span class="flex items-center justify-center w-5 h-5 ml-2 text-sm font-semibold text-indigo-500 bg-white rounded bg-opacity-30"><?php echo $res['doneCount'] ?></span>
+                            <!-- <button class="flex items-center justify-center w-6 h-6 ml-auto text-indigo-500 rounded hover:bg-indigo-500 hover:text-indigo-100">
                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                 </svg>
-                            </button>
+                            </button> -->
                         </div>
                         <div class="flex flex-col pb-2 overflow-auto">
                             <?php foreach ($tasks as $t) :
@@ -363,7 +364,7 @@ $task->DeleteTasks();
                                                 <span class="ml-1 leading-none"></span>
                                             </div>
                                             <div class="flex items-center gap-6">
-                                                <a href="#" title="Edit" class="editProjectButton" data-project-id="" data-project-name="" data-project-description="" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal">
+                                                <a href="#" title="Edit" class="editTaskButton" data-task-Id="<?php echo $t->getIdta(); ?>" data-task-Nom="<?php echo $t->getNomta(); ?>" data-task-Desc="<?php echo $t->getDescta(); ?>" data-task-Datedeb="<?php echo $t->getDatedeb(); ?>" data-task-Datefin="<?php echo $t->getDatefin(); ?>" data-task-Statut="<?php echo $t->getStatut(); ?>" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal">
                                                     <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                                                         <path opacity="1" fill="#2766d3" d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z" />
                                                     </svg>
@@ -386,8 +387,93 @@ $task->DeleteTasks();
                 </div>
             </div>
 
+            <!-- Main modal -->
+            <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative p-4 w-full max-w-md max-h-full">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <!-- Modal header -->
+                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                Update task
+                            </h3>
+                            <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-4 md:p-5">
+                            <form class="space-y-4" action="" method="post">
+                                <div class="grid gap-4 mb-4 grid-cols-2">
+                                    <input type="hidden" name="idta" id="editTaskId">
+                                    <div class="col-span-2">
+                                        <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Task title</label>
+                                        <input type="text" name="nomta" id="editNomta" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type task name" required="">
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Task Description</label>
+                                        <textarea name="descta" id="editDescta" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write task description here"></textarea>
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date debut</label>
+                                        <input type="date" name="datedeb" id="editDatedeb" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type task name" required="">
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date fin</label>
+                                        <input type="date" name="datefin" id="editDatefin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type task name" required="">
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Choose a state of the task</label>
+                                        <select id="editStatut" name="statut" class="block w-full px-4 py-2 border rounded-md bg-gray-100 focus:outline-none focus:bg-white focus:border-indigo-500 dark:bg-gray-800 dark:border-gray-700 dark:focus:bg-gray-700 dark:focus:border-indigo-500">
+                                            <option value="to do">To Do</option>
+                                            <option value="doing">Doing</option>
+                                            <option value="done">Done</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <button type="submit" name="edittask" class="inline-flex items-center bg-yellow-100 hover:bg-yellow-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    Update task
+                                </button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
+
+    <script>
+        document.querySelectorAll('.editTaskButton').forEach(button => {
+            button.addEventListener('click', function() {
+                showEditTaskForm(button);
+            });
+        });
+
+
+        function showEditTaskForm(button) {
+            var editTaskForm = document.getElementById('authentication-modal');
+            if (editTaskForm) {
+                editTaskForm.querySelector('#editTaskId').value = button.dataset.taskId || '';
+                editTaskForm.querySelector('#editNomta').value = button.dataset.taskNom || '';
+                editTaskForm.querySelector('#editDescta').value = button.dataset.taskDesc || '';
+                editTaskForm.querySelector('#editDatedeb').value = button.dataset.taskDatedeb || '';
+                editTaskForm.querySelector('#editDatefin').value = button.dataset.taskDatefin || '';
+                editTaskForm.querySelector('#editStatut').value = button.dataset.taskStatut || '';
+
+
+            }
+        }
+    </script>
 </body>
 
 </html>

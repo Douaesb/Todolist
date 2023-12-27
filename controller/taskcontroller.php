@@ -34,6 +34,22 @@ class taskcontroller
 
     public function EditTasks()
     {
+        $task = new TaskModel();
+        if (isset($_GET['idpro'])) {
+            $idpro = $_GET['idpro'];
+        if (isset($_POST['edittask']) && isset($_POST['idta'])) {
+                $idta = $_POST['idta'];
+                $task->setNomta($_POST['nomta']);
+                $task->setDescta($_POST['descta']);
+                $task->setDatedeb($_POST['datedeb']);
+                $task->setDatefin($_POST['datefin']);
+                $task->setStatut($_POST['statut']);
+                $task->EditTasks($idta);
+                header("Location: tasks.php?task&idpro=$idpro");
+                exit();
+            }
+        }
+        
     }
 
     public function DeleteTasks()
