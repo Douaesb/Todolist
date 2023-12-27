@@ -7,13 +7,12 @@ DataWare souhaite mettre en place un système numérique de gestion des tâches 
 
   - **Authentification et Autorisation**
     - Les utilisateurs doivent s'authentifier pour accéder à la plateforme.
-    - Différents rôles sont attribués pour gérer les autorisations.
 
   - **Gestion de Projets**
     - Ajout, modification et suppression de projets par les utilisateurs.
 
   - **Gestion de Tâches dans un Projet**
-    - Ajout de tâches au backlog, modification des détails et du statut, archivage des tâches.
+    - Ajout de tâches au backlog, modification des détails et du statut, archivage et suppression des tâches.
 
   - **Consultation de Tâches**
     - Visualisation des tâches assignées après authentification.
@@ -55,12 +54,12 @@ DataWare souhaite mettre en place un système numérique de gestion des tâches 
 
 1. **Cloner le Répertoire**
     ```bash
-    git clone https://github.com/[todolist].git
+    git clone https://github.com/Douaesb/Todolist.git
     ```
 
 2. **Importer la Base de Données**
     - Créer une base de données MySQL (ou tout autre système de gestion de base de données pris en charge).
-    - Importer le fichier SQL fourni dans le fichier `db.sql`.
+    - Importer le fichier SQL fourni dans le fichier `todolist.sql`.
 
 3. **Configurer la Connexion à la Base de Données**
     - Modifier les paramètres de connexion à la base de données dans le fichier `model/config.php`.
