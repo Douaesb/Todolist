@@ -136,9 +136,9 @@ $user->logout();
 
                     <?php foreach ($projects as $project) : ?>
                         <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-                            <article class="overflow-hidden rounded-lg shadow-lg h-full bg-green-100
+                            <article class="overflow-hidden rounded-lg shadow-lg h-full
                         <?php
-                        $bgColors = ['bg-purple-100', 'bg-pink-100', 'bg-green-100','bg-yellow-100','bg-white-100'];
+                        $bgColors = ['bg-purple-100', 'bg-pink-100', 'bg-green-100','bg-yellow-100','bg-blue-100'];
                         $randomIndex = array_rand($bgColors);
                         echo $bgColors[$randomIndex];
                         ?>

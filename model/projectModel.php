@@ -86,6 +86,18 @@ class ProjectModel{
         $stmt->bindParam(':idpro', $idpro);
         return $stmt->execute();
     }
+    
+    public function ProjectFinished($iduser)
+    {
+        $sql = "SELECT count(idpro) FROM projet WHERE iduser = :iduser";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':iduser', $iduser);
+        if ($stmt->execute()) {
+            return $stmt->fetchColumn();
+        } else {
+            return false;
+        }
+    }
 
 
 }

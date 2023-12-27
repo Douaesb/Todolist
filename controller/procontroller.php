@@ -48,4 +48,12 @@ class procontroller
             exit();
         }
     }
+
+    public function ProjectsFinished()
+    {
+            $iduser = $_SESSION['iduser'];
+            $project = new ProjectModel();
+            return $project->ProjectFinished($iduser);
+    }
+
 }

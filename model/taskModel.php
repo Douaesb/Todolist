@@ -163,6 +163,18 @@ class TaskModel
         return $stmt->execute();
     }
 
+    public function TasksFinished($iduser)
+    {
+        $sql = "SELECT count(idta) FROM tache WHERE etat is null AND statut='done' AND iduser = :iduser";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':iduser', $iduser);
+        if ($stmt->execute()) {
+            return $stmt->fetchColumn();
+        } else {
+            return false;
+        }
+    }
+
 
 
     public function SearchTasks()
