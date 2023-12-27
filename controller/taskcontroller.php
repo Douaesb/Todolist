@@ -100,6 +100,13 @@ class taskcontroller
             ];
         }
     }
+    
+    public function TasksFinished()
+    {
+            $iduser = $_SESSION['iduser'];
+            $task = new TaskModel();
+            return $task->TasksFinished($iduser);
+    }
 
     public function SearchTasks()
     {

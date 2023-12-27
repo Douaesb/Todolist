@@ -1,10 +1,15 @@
 <?php
 require_once('../controller/usercontroller.php');
-
+require_once('../controller/taskcontroller.php');
+require_once('../controller/procontroller.php');
 $user = new usercontroller();
 $user->login();
 $user->isLoggedIn();
 $user->logout();
+$task = new taskcontroller();
+$numtask = $task->TasksFinished();
+$projet = new procontroller();
+$numpro = $projet->ProjectsFinished();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,10 +74,12 @@ $user->logout();
           <h1 class="text-3xl font-bold mb-10">Welcome to your account, We are so happy to see you</h1>
 
           <hr class="my-10">
+          <div class="flex justify-center items-center">
 
+            <h2 class="text-2xl font-bold mb-4">Statistiques</h2>
+          </div>
           <div class="grid grid-cols-2 gap-x-20">
-            <div>
-              <h2 class="text-2xl font-bold mb-4">Stats</h2>
+            <div class="flex justify-center items-center">
 
               <div class="grid grid-cols-2 gap-4">
                 <div class="col-span-2">
@@ -90,20 +97,19 @@ $user->logout();
                 <div class="col-span-2">
                   <div class="p-4 bg-yellow-100 rounded-xl text-gray-800">
 
-                    <div class="font-bold text-2xl leading-none">20</div>
-                    <div class="mt-2">Tasks finished</div>
+                    <div class="font-bold text-2xl leading-none"><?php echo $numtask ?> Tasks</div>
+                    <div class="mt-2">Tasks finished in all projects</div>
                   </div>
                 </div>
                 <div class="col-span-2">
                   <div class="p-4 bg-purple-100 rounded-xl text-gray-800">
-                    <div class="font-bold text-xl leading-none">Your daily plan</div>
-                    <div class="mt-2">5 of 8 completed</div>
+                    <div class="font-bold text-xl leading-none">Your projects</div>
+                    <div class="mt-2"><?php echo $numpro ?> Projects</div>
                   </div>
                 </div>
               </div>
             </div>
-            <div>
-              <h2 class="text-2xl font-bold mb-4">Your tasks today</h2>
+            <div class="flex justify-center items-center">
 
               <div class="space-y-4">
                 <div class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
