@@ -1,7 +1,8 @@
 <?php
 require_once('database.php');
 
-class TaskModel{
+class TaskModel
+{
     private $conn;
     private $idta;
     private $nomta;
@@ -17,61 +18,74 @@ class TaskModel{
         $this->conn = Database::getDb()->getConn();
     }
 
-    public function getIdta(){
+    public function getIdta()
+    {
         return $this->idta;
     }
 
-    public function setIdta($idta){
+    public function setIdta($idta)
+    {
         $this->idta = $idta;
-
     }
-    public function getNomta(){
+    public function getNomta()
+    {
         return $this->nomta;
     }
 
-    public function setNomta($nomta){
+    public function setNomta($nomta)
+    {
         $this->nomta = $nomta;
     }
-    public function getDescta(){
+    public function getDescta()
+    {
         return $this->descta;
     }
 
-    public function setDescta($descta){
+    public function setDescta($descta)
+    {
         $this->descta = $descta;
     }
 
-    public function getDatedeb(){
+    public function getDatedeb()
+    {
         return $this->datedeb;
     }
 
-    public function setDatedeb($datedeb){
+    public function setDatedeb($datedeb)
+    {
         $this->datedeb = $datedeb;
-
     }
-    public function getDatefin(){
+    public function getDatefin()
+    {
         return $this->datefin;
     }
 
-    public function setDatefin($datefin){
+    public function setDatefin($datefin)
+    {
         $this->datefin = $datefin;
     }
-    public function getEtat(){
+    public function getEtat()
+    {
         return $this->etat;
     }
 
-    public function setEtat($etat){
+    public function setEtat($etat)
+    {
         $this->etat = $etat;
     }
-    public function getStatut(){
+    public function getStatut()
+    {
         return $this->statut;
     }
 
-    public function setStatut($statut){
+    public function setStatut($statut)
+    {
         $this->statut = $statut;
     }
 
 
-    public function DisplayTask($iduser,$idpro){
+    public function DisplayTask($iduser, $idpro)
+    {
         $sql = "SELECT * FROM tache where iduser = :idu AND idpro = :idpro";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':idu', $iduser);
@@ -92,21 +106,48 @@ class TaskModel{
         return $tasks;
     }
 
-    public function AddTasks(){
-        
+    public function AddTask($iduser, $idpro)
+    {
+        $sql = "INSERT INTO tache (nomta, descta,datedeb,datefin,statut,iduser,idpro) VALUES (:nomta, :descta, :datedeb, :datefin, :statut, :iduser, :idpro)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':nomta', $this->nomta);
+        $stmt->bindParam(':descta', $this->descta);
+        $stmt->bindParam(':datedeb', $this->datedeb);
+        $stmt->bindParam(':datefin', $this->datefin);
+        $stmt->bindParam(':statut', $this->statut);
+        $stmt->bindParam(':iduser', $iduser);
+        $stmt->bindParam(':idpro', $idpro);
+        return $stmt->execute();
     }
 
-    public function EditTasks(){
-        
+    public function EditTasks()
+    {
     }
 
-    public function DeleteTasks(){
-        
+    public function DeleteTask($idta)
+    {
+        $sql = "DELETE FROM tache WHERE idta = :idta";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idta', $idta);
+        return $stmt->execute();
     }
 
-    public function SearchTasks(){
+    public function getTaskCount($iduser, $idpro, $status){
+        $sql = "SELECT count(idta) FROM tache WHERE statut = :status AND iduser = :iduser AND idpro = :idpro";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':status', $status);
+        $stmt->bindParam(':iduser', $iduser);
+        $stmt->bindParam(':idpro', $idpro);
         
+        if ($stmt->execute()) {
+            return $stmt->fetchColumn(); 
+        } else {
+            return false;
+        }
     }
 
 
+    public function SearchTasks()
+    {
+    }
 }
