@@ -67,6 +67,21 @@ class taskcontroller
         }
     }
 
+    public function ArchiveTasks()
+    {
+        if (isset($_GET['idpro'])) {
+            $idpro = $_GET['idpro'];
+            if (isset($_GET['archivetask']) && isset($_GET['idta'])) {
+                $idta = $_GET['idta'];
+                $idpro = $_GET['idpro'];
+                $task = new TaskModel();
+                $task->ArchiveTask($idta);
+                header("Location: tasks.php?task&idpro=$idpro");
+                exit();
+            }
+        }
+    }
+
     public function getTaskCount()
     {
 

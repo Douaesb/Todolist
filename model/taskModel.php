@@ -86,7 +86,7 @@ class TaskModel
 
     public function DisplayTask($iduser, $idpro)
     {
-        $sql = "SELECT * FROM tache where iduser = :idu AND idpro = :idpro";
+        $sql = "SELECT * FROM tache where iduser = :idu AND idpro = :idpro AND etat is null ORDER BY datefin desc";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':idu', $iduser);
         $stmt->bindParam(':idpro', $idpro);
@@ -152,6 +152,13 @@ class TaskModel
         $stmt->bindParam(':datedeb', $this->datedeb);
         $stmt->bindParam(':datefin', $this->datefin);
         $stmt->bindParam(':statut', $this->statut);
+        $stmt->bindParam(':idta', $idta);
+        return $stmt->execute();
+    }
+
+    public function ArchiveTask($idta){
+        $sql = "UPDATE tache SET etat = 1 WHERE idta = :idta";
+        $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':idta', $idta);
         return $stmt->execute();
     }
