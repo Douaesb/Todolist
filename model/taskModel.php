@@ -131,7 +131,7 @@ class TaskModel
 
     public function getTaskCount($iduser, $idpro, $status)
     {
-        $sql = "SELECT count(idta) FROM tache WHERE statut = :status AND iduser = :iduser AND idpro = :idpro";
+        $sql = "SELECT count(idta) FROM tache WHERE statut = :status AND etat is null AND iduser = :iduser AND idpro = :idpro";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':status', $status);
         $stmt->bindParam(':iduser', $iduser);
