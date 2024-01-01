@@ -177,7 +177,21 @@ class TaskModel
 
 
 
-    public function SearchTasks()
+    public function SearchTask($searchQuery)
     {
+        try {
+            $query = "SELECT * FROM tache WHERE nomta LIKE :searchQuery";
+            $stmt = $this->conn->prepare($query);
+    
+            $searchQuery = '%' . $searchQuery . '%';
+    
+            $stmt->bindParam(':searchQuery', $searchQuery);
+            $stmt->execute();
+    
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "PDO Error: " . $e->getMessage();
+            return array();
+        }
     }
 }

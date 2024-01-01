@@ -143,21 +143,19 @@ $task->DeleteTasks();
                     </a>
                 </div>
 
-
-                <form>
+                <div class="flex justify-start gap-2 m-auto">
+                    <input type="search" id="taskSearchInput" class="block w-60 p-2 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" placeholder="Search Mockups, Logos..." required>
+                </div>
+                <!-- <div>
                     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                     <div class="relative">
                         <div class="inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
                         </div>
-                        <div class="flex justify-start gap-2 m-auto">
-                            <input type="search" id="default-search" class="block w-60 p-2 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" placeholder="Search Mockups, Logos..." required>
 
-                            <button type="submit" class="flex items-center bg-yellow-100 border-2 border-black hover:bg-yellow-200 focus:ring-2 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-3 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Search</button>
-                        </div>
                     </div>
-                </form>
+                </div> -->
                 <div class="flex items-center w-40 bg-yellow-100 border-2 border-black hover:bg-yellow-200 focus:ring-2 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm py-2 px-6 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
 
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -172,12 +170,11 @@ $task->DeleteTasks();
 
             </div>
 
-            <div class="flex flex-col md:flex-row flex-grow justify-end w-90 px-10 mt-14 md:space-x-10 overflow-auto">
+            <div id="taskSearchResults" class="flex flex-col md:flex-row flex-grow justify-end w-90 px-10 mt-14 md:space-x-10 overflow-auto">
                 <div class="flex flex-col flex-shrink-0 w-72">
                     <div class="flex items-center flex-shrink-0 h-10 px-2">
                         <span class="block text-sm font-semibold">to do</span>
                         <span class="flex items-center justify-center w-5 h-5 ml-2 text-sm font-semibold text-indigo-500 bg-white rounded bg-opacity-30"><?php echo $res['todoCount'] ?></span>
-
                     </div>
                     <div class="flex flex-col pb-2 overflow-auto">
                         <?php foreach ($tasks as $t) :
@@ -342,7 +339,7 @@ $task->DeleteTasks();
                                                 <svg class='h-5 w-5 text-gray-500' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
                                                     <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20' />
                                                 </svg>
-                                            </a>
+                                           </a>
                                             <a title="delete" href="tasks.php?deletetask&idta=<?php echo $t->getIdta(); ?>&idpro=<?php echo $_GET['idpro']; ?>">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                                                     <path fill="#e6321e" d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
@@ -358,8 +355,11 @@ $task->DeleteTasks();
 
                     </div>
                 </div>
+
+
             </div>
         </div>
+
 
         <!-- Main modal -->
         <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -446,6 +446,41 @@ $task->DeleteTasks();
 
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+    var taskSearchInput = document.getElementById('taskSearchInput');
+    var taskSearchResults = document.getElementById('taskSearchResults');
+
+    // Store the original state of taskSearchResults
+    var originalResultsHTML = taskSearchResults.innerHTML;
+
+    taskSearchInput.addEventListener('input', function() {
+        var searchQuery = taskSearchInput.value.trim();
+
+        if (searchQuery !== '') {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '../controller/taskcontroller.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        taskSearchResults.innerHTML = ''; // Clear the results first
+                        taskSearchResults.innerHTML = xhr.responseText;
+                    } else {
+                        console.error(xhr.statusText);
+                    }
+                }
+            };
+
+            xhr.send('query=' + encodeURIComponent(searchQuery));
+        } else {
+            // Use the original state when input is empty
+            taskSearchResults.innerHTML = originalResultsHTML;
+        }
+    });
+});
+
     </script>
 </body>
 
