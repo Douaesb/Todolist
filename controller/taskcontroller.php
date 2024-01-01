@@ -107,7 +107,24 @@ class taskcontroller
             $task = new TaskModel();
             return $task->TasksFinished($iduser);
     }
-
+    public function MostTasks()
+    {
+            $iduser = $_SESSION['iduser'];
+            $task = new TaskModel();
+            return $task->MostTasks($iduser);
+    }
+    public function lessTasks()
+    {
+            $iduser = $_SESSION['iduser'];
+            $task = new TaskModel();
+            return $task->lessTasks($iduser);
+    }
+    public function DONE()
+    {
+            $iduser = $_SESSION['iduser'];
+            $task = new TaskModel();
+            return $task->DONE($iduser);
+    }
     public function SearchTasks()
     {
         if (isset($_POST['query'])) {

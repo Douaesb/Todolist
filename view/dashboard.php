@@ -10,6 +10,9 @@ $task = new taskcontroller();
 $numtask = $task->TasksFinished();
 $projet = new procontroller();
 $numpro = $projet->ProjectsFinished();
+$mosttask = $task->MostTasks();
+$lesstask = $task->lessTasks();
+$done = $task->DONE();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,34 +117,39 @@ $numpro = $projet->ProjectsFinished();
               <div class="space-y-4">
                 <div class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
                   <div class="flex justify-between">
-                    <div class="text-gray-400 text-xs">Number 10</div>
-                    <div class="text-gray-400 text-xs">4h</div>
+                    <div class="text-gray-400 text-xs"></div>
+                    <div class="text-gray-400 text-xs"></div>
                   </div>
-                  <a href="javascript:void(0)" class="font-bold hover:text-yellow-800 hover:underline">Blog and social posts</a>
+                  <a href="javascript:void(0)" class="font-bold hover:text-yellow-800 hover:underline"><?php echo $mosttask ?></a>
                   <div class="text-sm text-gray-600">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="text-gray-800 inline align-middle mr-1" viewBox="0 0 16 16">
                       <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-                    </svg>Deadline is today
+                    </svg>Project with the most tasks
                   </div>
                 </div>
                 <div class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
                   <div class="flex justify-between">
-                    <div class="text-gray-400 text-xs">Grace Aroma</div>
-                    <div class="text-gray-400 text-xs">7d</div>
+                    <div class="text-gray-400 text-xs"></div>
+                    <div class="text-gray-400 text-xs"></div>
                   </div>
-                  <a href="javascript:void(0)" class="font-bold hover:text-yellow-800 hover:underline">New campaign review</a>
+                  <a href="javascript:void(0)" class="font-bold hover:text-yellow-800 hover:underline"><?php echo $lesstask ?></a>
                   <div class="text-sm text-gray-600">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="text-gray-800 inline align-middle mr-1" viewBox="0 0 16 16">
                       <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-                    </svg>New feedback
+                    </svg>The project with the less tasks to do 
                   </div>
                 </div>
                 <div class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
                   <div class="flex justify-between">
-                    <div class="text-gray-400 text-xs">Petz App</div>
-                    <div class="text-gray-400 text-xs">2h</div>
+                    <div class="text-gray-400 text-xs"></div>
+                    <div class="text-gray-400 text-xs"></div>
                   </div>
-                  <a href="javascript:void(0)" class="font-bold hover:text-yellow-800 hover:underline">Cross-platform and browser QA</a>
+                  <a href="javascript:void(0)" class="font-bold hover:text-yellow-800 hover:underline"><?php echo $done ?></a>
+                  <div class="text-sm text-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="text-gray-800 inline align-middle mr-1" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                    </svg>The project with all tasks done 
+                  </div>
                 </div>
 
               </div>

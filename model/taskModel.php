@@ -156,7 +156,8 @@ class TaskModel
         return $stmt->execute();
     }
 
-    public function ArchiveTask($idta){
+    public function ArchiveTask($idta)
+    {
         $sql = "UPDATE tache SET etat = 1 WHERE idta = :idta";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':idta', $idta);
@@ -175,6 +176,92 @@ class TaskModel
         }
     }
 
+    public function MostTasks($iduser)
+    {
+        $sql = "SELECT
+        p.nompro,
+        COUNT(t.idta) AS task_count
+    FROM
+        projet p
+    LEFT JOIN
+        tache t ON p.idpro = t.idpro
+    INNER JOIN
+        user u ON p.iduser = u.iduser
+    WHERE
+        u.iduser = :iduser
+    GROUP BY
+      p.nompro
+    ORDER BY
+        task_count DESC
+    LIMIT 1 ";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':iduser', $iduser);
+        if ($stmt->execute()) {
+            return $stmt->fetchColumn();
+        } else {
+            return false;
+        }
+    }
+    public function lessTasks($iduser)
+    {
+        $sql = "SELECT
+        p.nompro,
+        COUNT(t.idta) AS task_count
+    FROM
+        projet p
+    LEFT JOIN
+        tache t ON p.idpro = t.idpro
+    INNER JOIN
+        user u ON p.iduser = u.iduser
+    WHERE
+        t.statut = 'to do'
+        AND u.iduser = :iduser
+    GROUP BY
+ p.nompro
+    ORDER BY
+        task_count ASC
+    LIMIT 1"; 
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':iduser', $iduser);
+        if ($stmt->execute()) {
+            return $stmt->fetchColumn();
+        } else {
+            return false;
+        }
+    }
+
+    public function DONE($iduser)
+    {
+        $sql = "
+        SELECT
+        p.nompro,
+        COUNT(CASE WHEN t.statut = 'to do' OR t.statut = 'doing' THEN 1 END) AS todo_doing_count,
+        COUNT(CASE WHEN t.statut = 'done' THEN 1 END) AS done_count
+    FROM
+        projet p
+    LEFT JOIN
+        tache t ON p.idpro = t.idpro
+    INNER JOIN
+        user u ON p.iduser = u.iduser
+    WHERE
+     u.iduser = :iduser
+    GROUP BY
+      p.nompro
+    HAVING
+        todo_doing_count = 0 AND done_count > 0"; 
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':iduser', $iduser);
+        if ($stmt->execute()) {
+            return $stmt->fetchColumn();
+        } else {
+            return false;
+        }
+    }
+
+
+
+
 
 
     public function SearchTask($searchQuery)
@@ -182,12 +269,12 @@ class TaskModel
         try {
             $query = "SELECT * FROM tache WHERE nomta LIKE :searchQuery";
             $stmt = $this->conn->prepare($query);
-    
+
             $searchQuery = '%' . $searchQuery . '%';
-    
+
             $stmt->bindParam(':searchQuery', $searchQuery);
             $stmt->execute();
-    
+
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "PDO Error: " . $e->getMessage();
