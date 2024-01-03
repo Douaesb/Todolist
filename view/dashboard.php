@@ -70,7 +70,7 @@ $done = $task->DONE();
     </div>
   </aside>
 
-  <main class="md:ml-60 pt-16 max-h-screen overflow-auto">
+  <main class="md:ml-60 pt-16 overflow-y-auto max-h-screen">
     <div class="px-6 py-8 max-w-4xl mx-auto">
       <div class="max-w-4xl mx-auto">
         <div class="bg-white rounded-3xl p-8 mb-5">
@@ -81,79 +81,59 @@ $done = $task->DONE();
 
             <h2 class="text-2xl font-bold mb-4">Statistiques</h2>
           </div>
-          <div class="grid grid-cols-2 gap-x-20">
+          <div class="grid">
             <div class="flex justify-center items-center">
 
               <div class="grid grid-cols-2 gap-4">
-                <div class="col-span-2">
+              <div class="col-span-2 md:col-span-1">
                   <div class="p-4 bg-green-100 rounded-xl">
                     <div class="font-bold text-3xl text-gray-800 leading-none">Good day, <?php echo $_SESSION['nom'] ?></div>
                     <div class="mt-5">
                       <a href="projects.php">
-                        <button type="button" class="inline-flex items-center justify-center py-2 px-3 rounded-xl bg-white text-gray-800 hover:text-green-500 text-sm font-semibold transition">
+                        <!-- <button type="button" class="inline-flex items-center justify-center py-2 px-3 rounded-xl bg-white text-gray-800 hover:text-green-500 text-sm font-semibold transition">
                           View projects
-                        </button>
+                        </button> -->
                       </a>
                     </div>
                   </div>
                 </div>
-                <div class="col-span-2">
-                  <div class="p-4 bg-yellow-100 rounded-xl text-gray-800">
+                <div class="col-span-2 md:col-span-1">
+                  <div class="p-4 bg-purple-100 rounded-xl text-gray-800">
 
                     <div class="font-bold text-2xl leading-none"><?php echo $numtask ?> Tasks</div>
                     <div class="mt-2">Tasks finished in all projects</div>
                   </div>
                 </div>
-                <div class="col-span-2">
+                <div class="col-span-2 md:col-span-1">
                   <div class="p-4 bg-purple-100 rounded-xl text-gray-800">
                     <div class="font-bold text-xl leading-none">Your projects</div>
                     <div class="mt-2"><?php echo $numpro ?> Projects</div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="flex justify-center items-center">
 
-              <div class="space-y-4">
-                <div class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
-                  <div class="flex justify-between">
-                    <div class="text-gray-400 text-xs"></div>
-                    <div class="text-gray-400 text-xs"></div>
-                  </div>
-                  <a href="javascript:void(0)" class="font-bold hover:text-yellow-800 hover:underline"><?php echo $mosttask ?></a>
-                  <div class="text-sm text-gray-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="text-gray-800 inline align-middle mr-1" viewBox="0 0 16 16">
-                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-                    </svg>Project with the most tasks
-                  </div>
-                </div>
-                <div class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
-                  <div class="flex justify-between">
-                    <div class="text-gray-400 text-xs"></div>
-                    <div class="text-gray-400 text-xs"></div>
-                  </div>
-                  <a href="javascript:void(0)" class="font-bold hover:text-yellow-800 hover:underline"><?php echo $lesstask ?></a>
-                  <div class="text-sm text-gray-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="text-gray-800 inline align-middle mr-1" viewBox="0 0 16 16">
-                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-                    </svg>The project with the less tasks to do 
-                  </div>
-                </div>
-                <div class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
-                  <div class="flex justify-between">
-                    <div class="text-gray-400 text-xs"></div>
-                    <div class="text-gray-400 text-xs"></div>
-                  </div>
-                  <a href="javascript:void(0)" class="font-bold hover:text-yellow-800 hover:underline"><?php echo $done ?></a>
-                  <div class="text-sm text-gray-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="text-gray-800 inline align-middle mr-1" viewBox="0 0 16 16">
-                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-                    </svg>The project with all tasks done 
+                <div class="col-span-2 md:col-span-1">
+                  <div class="p-4 bg-yellow-100 rounded-xl text-gray-800">
+                    <div class="font-bold text-xl leading-none">Project with the most tasks</div>
+                    <div class="mt-2"><?php echo $mosttask ?></div>
                   </div>
                 </div>
 
+                <div class="col-span-2 md:col-span-1">
+                  <div class="p-4 bg-yellow-100 rounded-xl text-gray-800">
+                    <div class="font-bold text-xl leading-none">The project with the less tasks to do</div>
+                    <div class="mt-2"><?php echo $lesstask ?></div>
+                  </div>
+                </div>
+
+                <div class="col-span-2 md:col-span-1">
+                  <div class="p-4 bg-green-100 rounded-xl text-gray-800">
+                    <div class="font-bold text-xl leading-none">The project with all tasks done</div>
+                    <div class="mt-2"><?php echo $done ?></div>
+                  </div>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
