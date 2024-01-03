@@ -70,10 +70,10 @@ $done = $task->DONE();
     </div>
   </aside>
 
-  <main class="md:ml-60 pt-16 overflow-y-auto max-h-screen">
+  <main class="md:ml-60 pt-16 overflow-y-auto max-h-screen ">
     <div class="px-6 py-8 max-w-4xl mx-auto">
       <div class="max-w-4xl mx-auto">
-        <div class="bg-white rounded-3xl p-8 mb-5">
+        <div class="bg-white rounded-3xl p-8 mb-5 h-[500px]">
           <h1 class="text-3xl font-bold mb-10">Welcome to your account, We are so happy to see you</h1>
 
           <hr class="my-10">
